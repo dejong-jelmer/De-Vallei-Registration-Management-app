@@ -1,133 +1,126 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- pulling in bootstrap 4 css -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <!-- pulling in style.css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- pulling in jQuery 3.2.1 -->
+    <script src="js/jquery/jquery-3.2.1.js"></script>
+    <!-- pulling in Popper 1.11.0 -->
+    <script src="js/bootstrap/popper-1.11.0.min.js"></script>
+    <!-- pulling in bootstrap 4 JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- pulling in bootstrap Bootbox --> 
+    <script type="text/javascript" src="js/bootstrap/bootbox.min.js"></script>
+    <!-- pulling in axios -->
+    <script src="js/axios/axios.js"></script>
+   
+</head>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="js/jquery/jquery-3.2.1.js"></script>
-        <script src="js/bootstrap/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap/bootbox.min.js"></script>
-        <script src="js/core/functions.js"></script>
-        <script src="js/core/ajax.js"></script>
-         <script>
-            // define root URL for ajax calls
-            var root = "http://de_vallei.dev";
-        </script>
-
-    </head>
-    <body style="overflow:scroll;">
-        <input type="hidden" id="signOutStatus">
-        <input type="hidden" id="signOutId">
-        <input type="hidden" id="signOutR_R">
-
-        <div class="container">
-            <div id="arrowBack" class="row" style="height: 100px; opacity: 0.0;";>
-                <button type="button" class="btn btn-default btn-lg">
-                    <span class="glyphicon glyphicon-arrow-left"></span> Terug
-                </button>
+<body>
+<div class="container-fluid"> 
+    
+<div id="login">
+    <div v-if="!logedIn">
+    <!-- <div v-if="logedIn"> -->
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-6 offset-3">
+                <span class="col-12" style="text-align: center;">
+                    <h3>{{ message }}</h3>
+                </span>
             </div>
-            <script>
-                $("#arrowBack").click(function(){
-                    $("#coachColumn").fadeIn("slow");
-                    $("#studentColumn").fadeOut("fast");
-                    $("#arrowBack").animate({opacity: "0.0"});
-                });
-            </script>
-                <div id="authColumn" class="col-sm-4 col-md-offset-4">
-                    
-                    <div class="row" style="margin: 5px">
-                        <div class="col-md-2 col-md-offset-7"><input id="pinBcksp" type="button" class="btn btn-lg" value="<"></div>
-                    </div>
-                    <div class="row" style="margin: 5px">
-                        <div class="col-md-2 col-md-offset-3 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="1"></div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="2"></div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="3"></div>
-                    </div>
-                    <div class="row" style="margin: 5px">
-                        <div class="col-md-2 col-md-offset-3 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="4"></div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="5"></div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value=6></div>
-                    </div>
-                    <div class="row" style="margin: 5px">
-                        <div class="col-md-2 col-md-offset-3 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value=7>
-                        </div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value="8"></div>
-                        <div class="col-md-2 float-left"><input type="button" class="pinBtn btn btn-default btn-lg" value=9></div></div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3"><input type="button" class="btn btn-default btn-block" style="display: block;" id="pinSubmit" value="invoeren"></div>
-                    </div>
-                </div>
-                <div id="coachColumn" class="col-sm-4 col-md-offset-4">
-                    <div id="coachGroupOutput"> </div>
-                </div>
-                        
-                <div id="studentColumn" class="col-sm-4 col-md-offset-4">
-                    <div id="studentsOutput"> </div>
-                </div>
         </div>
-
-        <div id="authOutput"> <input type="hidden" id="pinInput"></div>
-        <div id="modalOutput"></div>
-        <script>
-            jQuery(document).ready(function() {
-                // $(".pinBtn").click(function(){
-                //     var pin = document.getElementById("pinInput");
-                //     pin.value += this.value;
-                    
-                //     if(pin.value.length >= 4) {
-                //         $("#pinSubmit").css({"display":"block"});
-                //     } else {
-                //         $("#pinSubmit").css({"display":"none"});
-
-                //     }
-                // });
-
-                // $("#pinBcksp").click(function(){
-                //     $("#pinInput").val("");
-                // });
-
-                // $("#pinInput").change(function(){
-                //     if(this.value.length >= 4) {
-                //         $("#pinSubmit").css({"display":"block"});
-                //     } else {
-                //         $("#pinSubmit").css({"display":"none"});
-
-                //     }
-                // });
+        <div class="row" style="height: 50px;">
+            <div class="col-6 offset-3 center">
+                <span v-for="check in checked" v-show="check.show" class="col"><img :src="bullet" alt="*" style="width: 20px; height: 20px;">
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <span class="col-6 col-sm-4 btn btn-outline-info login loginBtn" v-for="number in firstNumbers" @click="bindCode(number)" ><h2>{{ number }}</h2></span>
                 
+                <span class="col-6 col-sm-4 offset-sm-4 float-right float-sm-left btn btn-outline-info login loginBtn" @click="bindCode(lastNumber)"><h2>{{ lastNumber }}</h2></span>
+            </div>
+            <span v-if="input" @click="resetInput()" class="col-2 col-sm-1">
+                <img :src="reset" alt="*" style="width: 50px; height: 50px;">
+            </span>
+        </div>
+    </div>
+</div>
 
-
-                $("#pinSubmit").click(function() {
-                    $("#authColumn").fadeOut("fast");
-                    var wachtwoordInput = document.getElementById("pinInput").value;
-
-                    var url = root + "/api/v1/auth/login"; 
-                    var naam = "test@mail.com"; 
-                    // var naam = "devallei"; 
-                    var wachtwoord = /* wachtwoordInput */ '1234'; 
+<div id="app">
+    <div v-if="logedIn">
+    <!-- <div v-if="!logedIn"> -->
+        <div v-if="showCoaches">
+            <div v-if="showMenu" class="row" style="border-bottom: solid 3px;">
+                <div class="col-10 offset-2">
                     
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        dataType: "json",
-                        data: {'naam':naam, 'wachtwoord':wachtwoord},
-                        // error: function(response, textStatus, errorThrown) {
-                            // console.log(response.responseJSON); console.log(textStatus, errorThrown);
-                            // alert(response.responseJSON.error);
-                            // $("#authColumn").fadeIn("slow");
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="col-3 offset-1 nav-item dropdown" v-for="(status, i) in statusen" style="margin: 5px; auto;">
+                            <span @click="getStatus(i)" class="dropdown-toggle nav-link selectStatusBtn" data-toggle="dropdown" :style="{'background-color': status.color}">{{ status.status }}<span class="caret"></span></span>
+                            <ul v-show="showSelectedStatus" class="dropdown-menu" style="text-align: center">
+                                <li v-if="selectedStatus.length == 0" style="text-align: center"> geen leerlingen</li>
+                                <li v-for="selected in selectedStatus" v-else="selectedStatus.length > 0" >{{ selected.naam }}<span class="caret"></span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <span @click="logout()" class="col-1">
+                    <img :src="back" alt="*" style="width: 50px; height: 50px;">
+                </span>
+                <span @click="getMenu()" class="col-1 offset-10">
+                    <img class="menuBtn" :src="menu" alt="*" style="width: 50px; height: 50px;">
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-11">
+                     <div v-for="coach in coaches" @click="getCoachGroup(coach.id)" class="float-left offset-1 col-3 coachblock" :style="{'background-color': coach.color}"><h3 class="coachname">{{ coach.coach }}</h3></div>
+                </div>
+            </div>
+        </div>
+        <div v-if="showChoachgroep">
+            <div class="row">
+                <span @click="terug()" class="col-1">
+                    <img :src="back" alt="*" style="width: 50px; height: 50px;">
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-11">
+                     <div v-for="(leerling, i) in coachgroep" @click="changeStatus(i)" class="float-left offset-1 col-3 studentblock" :style="{'background-color': leerling.color}"><h3 class="studentname">#{{ leerling.naam }}</h3><span class="statusBar" :style="{'background-color': leerling.status.color}"></span><p v-if="leerling.reason">{{ leerling.reason.reason }}</p></div>
 
-                        // },
-                        success: function(response) { 
-                            getAllCoachGroups(response.token);
-                        }
-                    });
-                });
-                               
-            });          
-        </script>
-        
+                </div>
+             </div>
+        </div>
+    </div>
+    <div v-show="openModal" id='modalId' class='modal fade' role='dialog'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h4 class='modal-title'>Kies één van de knoppen om je af te melden:</h4>
+                </div>
+                <div class='modal-body'>
+                    <div v-for="(status, i) in selectable">
+                        <button @click="afmelden(i)" type="button" class="col btn btn-lg" :style="{ 'background-color': status.color}" data-dismiss="modal">{{ status.text }}</button>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class='modal-footer'></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    </body>
+    <!-- pulling in app Vue.JS -->
+    <script src="js/vue/vue.js"></script>
+    <!-- pulling in app specific Vue.JS instances -->
+    <script src="js/main.js"></script>
+   
+</body>
 </html>

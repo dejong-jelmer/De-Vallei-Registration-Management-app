@@ -1,0 +1,84 @@
+.loginBtn {
+    height: 120px;
+    padding-top:35px; 
+}
+
+.loginInvoerBtn { 
+    padding-top: 15px; 
+}
+
+.center {
+    text-align: center;
+}
+
+.coachblock {
+    height: 200px;
+    border:solid 1px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    cursor: pointer;
+}
+
+.coachname {
+    user-select: none;
+}
+
+
+.coachblock:hover .coachname::after {
+    background-color: red;
+}
+
+.coachname::after {
+    display: block;
+    margin-top: 10px;
+    height: 3px;
+    background-color: green;
+    border-radius: 1px; 
+    content: '';
+}
+
+.coachname:active::after {
+    background-color: red;
+}
+
+.studentblock {
+    height: 100px;
+    border:solid 1px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    cursor: pointer;
+ 
+}
+
+.studentname {
+    user-select: none;
+}
+
+
+.menuBtn {
+    border-left: solid 3px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-right: solid 3px;
+    border-bottom: solid 3px;
+    max-width: auto;
+}
+
+.statusBar {
+    display: block;
+    margin-top: 10px;
+    height: 3px;
+    background-color: green;
+    border-radius: 1px; 
+    content: '';
+}
+
+.selectStatusBtn {
+    cursor: pointer;
+}

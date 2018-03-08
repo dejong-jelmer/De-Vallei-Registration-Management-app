@@ -92,7 +92,7 @@
             </div>
             <div class="row">
                 <div class="col-11">
-                     <div v-for="(leerling, i) in coachgroep" @click="changeStatus(i)" class="float-left offset-1 col-3 studentblock" :style="{'background-color': leerling.color}"><h3 class="studentname">#{{ leerling.naam }}</h3><span class="statusBar" :style="{'background-color': leerling.status.color}"></span><p v-if="leerling.reason">{{ leerling.reason.reason }}</p></div>
+                     <div v-for="(leerling, i) in coachgroep" @click="changeStatus(i)" class="float-left offset-1 col-3 studentblock" :style="{'background-color': colors[leerling.color_id-1].color}"><h3 class="studentname">#{{ leerling.naam }}</h3><span class="statusBar" :style="{'background-color': leerling.status.color}"></span><p v-if="leerling.reason">{{ leerling.reason.reason }}</p></div>
 
                 </div>
              </div>

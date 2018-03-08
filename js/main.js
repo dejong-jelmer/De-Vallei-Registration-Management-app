@@ -141,6 +141,7 @@ var app = new Vue({
     el:"#app",
     data: {
         modal: '',
+        colors: [],
         coaches: [],
         statusen: [],
         coachgroep: [],
@@ -462,12 +463,28 @@ var app = new Vue({
     mounted: 
         function() {
 
-            console.info('retrieving all stautses: ')
+            console.info('retrieving all stautses and colors: ')
             axios.get('/statuses'
             ).then(
                 function(response) {
+                    console.log('stautses:')
                     console.log('%c success', 'color:green')
                     app.statusen = response.data.statusen
+                }
+            ).catch(
+                function(response) {
+                    bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                }
+            )
+
+            console.info('retrieving all colors: ')
+            axios.get('/kleuren'
+            ).then(
+                function(response) {
+                    console.log('colors:')
+                    console.log('%c success', 'color:green')
+                    app.colors = response.data.colors
                 }
             ).catch(
                 function(response) {

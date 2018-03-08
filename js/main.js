@@ -32,7 +32,7 @@ var login = new Vue({
             this.showBullet(this.code.length)
         },
         login() {  
-            console.log('loggin in / retrieving token:')         
+            console.info('loggin in / retrieving token:')         
             axios.post(
                 '/login', {
                     email:this.name,  
@@ -41,7 +41,8 @@ var login = new Vue({
             ).then(
                 
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
+
                     login.token = response.data.token
                     login.message = "Login succesvol"
                     login.resetInput()
@@ -58,7 +59,7 @@ var login = new Vue({
                     login.message = "Fout bij inloggen"
                     login.resetInput()
                     
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     
                 }
             )
@@ -89,7 +90,7 @@ var login = new Vue({
             function countdown() {
 
                 login.time--
-                // console.log(login.time)
+
                 document.onclick = function() {
                     login.time = stratTime
                 }
@@ -101,7 +102,7 @@ var login = new Vue({
                 }
 
                 if(login.time == 0) {
-                    console.log('Timed out: ')
+                    console.info('Timed out: ')
                     app.logout()
                 }
             }
@@ -160,14 +161,14 @@ var app = new Vue({
 
     methods: {
         getAllCoachGroups(token) {
-            console.log('Getting all coachgroepen:')
+            console.info('Getting all coachgroepen:')
             axios.get('/coachgroepen', {
                     headers: {'Authorization': 'Bearer ' + this.sessionToken}
                 }                   
             )
             .then(
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
 
                     var coaches = []
                     for(var i = 0; i < response.data.coaches.length; i++) {
@@ -178,7 +179,7 @@ var app = new Vue({
                 }
             ).catch(
                 function(response) {
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     if(!login.debug) {
                         app.logout()
                     }
@@ -188,13 +189,13 @@ var app = new Vue({
         },
 
         getCoachGroup(coachId) {
-            console.log('getting coachgroep with id: ' + coachId + ':')
+            console.info('getting coachgroep with id: ' + coachId + ':')
             axios.get('/coachgroep/' + coachId, {
                     headers: {'Authorization': 'Bearer ' + this.sessionToken}
                 }
             ).then(
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
 
                     var coachgroep = []
                     for(var i = 0; i < response.data.coachgroep.length; i++) {
@@ -205,7 +206,7 @@ var app = new Vue({
                 }
             ).catch(
                 function(response) {
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     
                     if(!login.debug) {
                         app.logout()
@@ -330,21 +331,21 @@ var app = new Vue({
         updateStatus(i, statusId, reason) {
 
             var student = this.coachgroep[i]
-            console.log('updating status of id: ' + student.id + ' to status id: ' + statusId + ':')
+            console.info('updating status of id: ' + student.id + ' to status id: ' + statusId + ':')
             axios.post('/leerlingen/updatestatus/' + student.id + '/' + statusId+'?token='+this.sessionToken, {
                     headers: {'Authorization': 'Bearer ' + this.sessionToken},
                     reden: reason
                 }
             ).then(
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
 
                     app.getCoachGroup(student.coach_id)
 
                 }
             ).catch(
                 function(response) {
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     
                     if(!login.debug) {
                         app.logout()
@@ -373,20 +374,20 @@ var app = new Vue({
             app.selectedStatus = []
             var status = this.statusen[i]
 
-            console.log('retrieving status of status id: ' + status.id + ':')
+            console.info('retrieving status of status id: ' + status.id + ':')
 
             axios.get('/status/' + status.id, {
                     headers: {'Authorization': 'Bearer ' + this.sessionToken},
                 }
             ).then(
                 function(response){
-                    console.log('success')
+                    console.log('%c success', 'color:green')
                     app.showSelectedStatus = true
                     app.selectedStatus = response.data.status.students
                 }
             ).catch(
                 function(response) {
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     
                     if(!login.debug) {
                         app.logout()
@@ -396,7 +397,7 @@ var app = new Vue({
         },
 
         logout() {
-            console.log('loggin of: ')
+            console.info('loggin of: ')
             axios.post('/logout', {
                     headers: {'Authorization': 'Bearer ' + this.sessionToken},
                     token: this.sessionToken
@@ -404,7 +405,7 @@ var app = new Vue({
 
             ).then(
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
                     app.logedIn = false
                     app.coaches = []
                     login.logedIn = false
@@ -414,7 +415,7 @@ var app = new Vue({
                 }
             ).catch(
                 function(response) {
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                     
                 }
             )
@@ -461,17 +462,17 @@ var app = new Vue({
     mounted: 
         function() {
 
-            console.log('retrieving all stautses: ')
+            console.info('retrieving all stautses: ')
             axios.get('/statuses'
             ).then(
                 function(response) {
-                    console.log('success')
+                    console.log('%c success', 'color:green')
                     app.statusen = response.data.statusen
                 }
             ).catch(
                 function(response) {
                     bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
-                    console.log('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
                 }
             )
         }

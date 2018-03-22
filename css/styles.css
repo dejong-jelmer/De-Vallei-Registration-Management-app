@@ -27,11 +27,11 @@
 }
 
 
-.coachblock:hover .coachname::after {
+/*.coachblock:hover .coachname::after {
     background-color: red;
-}
+}*/
 
-.coachname::after {
+/*.coachname::after {
     display: block;
     margin-top: 10px;
     height: 3px;
@@ -42,7 +42,7 @@
 
 .coachname:active::after {
     background-color: red;
-}
+}*/
 
 .studentblock {
     height: 100px;

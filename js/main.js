@@ -1,7 +1,7 @@
 
 // load axios instance
 var axios = axios.create({
-    baseURL: 'http://de_vallei.dev/api/v1',
+    baseURL: 'http://de_vallei.test/api/v1',
     timeout: 5000
 });
 
@@ -474,7 +474,7 @@ var app = new Vue({
             ).catch(
                 function(response) {
                     bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.status + ': ' + response.statusText +'"' )
                 }
             )
 
@@ -489,7 +489,7 @@ var app = new Vue({
             ).catch(
                 function(response) {
                     bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+response.status + ': ' + response.statusText +'"' )
                 }
             )
         }

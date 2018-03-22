@@ -80,7 +80,7 @@
             </div>
             <div class="row">
                 <div class="col-11">
-                     <div v-for="coach in coaches" @click="getCoachGroup(coach.id)" class="float-left offset-1 col-3 coachblock" :style="{'background-color': coach.color}"><h3 class="coachname">{{ coach.coach }}</h3></div>
+                     <div v-for="coach in coaches" @click="getCoachGroup(coach.id)" class="float-left offset-1 col-3 coachblock" :style="{'background-color': colors[coach.color_id-1].color}"><h3 class="coachname">{{ coach.coach }}</h3><span class="statusBar" :style="{'background-color': coach.status.color}"></span></div>
                 </div>
             </div>
         </div>

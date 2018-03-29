@@ -78,9 +78,10 @@
                     <img class="menuBtn" :src="menu" alt="*" style="width: 50px; height: 50px;">
                 </span>
             </div>
+            <!-- alle coach groepen -->
             <div class="row">
                 <div class="col-11">
-                     <div v-for="coach in coaches" @click="getCoachGroup(coach.id)" class="float-left offset-1 col-3 coachblock" :style="{'background-color': colors[coach.color_id-1].color}"><h3 class="coachname">{{ coach.coach }}</h3><span class="statusBar" :style="{'background-color': coach.status.color}"></span></div>
+                     <div v-for="coach in coaches" @click="getCoachGroup(coach.id)" class="float-left offset-1 col-3 coachblock" :style="{'background-color': colors[coach.color_id-1].color}"><h3 class="coachname">{{ jsUcfirst(coach.coach) }}</h3><span class="statusBar" :style="{'background-color': coach.status.color}"></span><p v-if="coach.reason">{{ jsUcfirst(coach.status.status) }}: {{ coach.reason.reason }}</p></div>
                 </div>
             </div>
         </div>
@@ -92,7 +93,7 @@
             </div>
             <div class="row">
                 <div class="col-11">
-                     <div v-for="(leerling, i) in coachgroep" @click="changeStatus(i)" class="float-left offset-1 col-3 studentblock" :style="{'background-color': colors[leerling.color_id-1].color}"><h3 class="studentname">#{{ leerling.naam }}</h3><span class="statusBar" :style="{'background-color': leerling.status.color}"></span><p v-if="leerling.reason">{{ leerling.reason.reason }}</p></div>
+                     <div v-for="(leerling, i) in coachgroep" @click="changeStatus(i)" class="float-left offset-1 col-3 studentblock" :style="{'background-color': colors[leerling.color_id-1].color}"><h3 class="studentname">{{ jsUcfirst(leerling.naam) }}</h3><span class="statusBar" :style="{'background-color': leerling.status.color}"></span><p v-if="leerling.reason">{{ jsUcfirst(leerling.status.status) }}: {{ leerling.reason.reason }}</p></div>
 
                 </div>
              </div>

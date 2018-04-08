@@ -55,11 +55,11 @@ var login = new Vue({
                     
                 }
             ).catch(
-                function(response) {
+                function(error) {
                     login.message = "Fout bij inloggen"
                     login.resetInput()
                     
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                    console.error('error: "'+ error)
                     
                 }
             )
@@ -179,8 +179,8 @@ var app = new Vue({
                                     
                 }
             ).catch(
-                function(response) {
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                function(error) {
+                    console.error('error: "'+ error)
                     if(!login.debug) {
                         app.logout()
                     }
@@ -206,8 +206,8 @@ var app = new Vue({
 
                 }
             ).catch(
-                function(response) {
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                function(error) {
+                    console.error('error: "'+ error)
                     
                     if(!login.debug) {
                         app.logout()
@@ -345,8 +345,8 @@ var app = new Vue({
 
                 }
             ).catch(
-                function(response) {
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                function(error) {
+                    console.error('error: "'+ error)
                     
                     if(!login.debug) {
                         app.logout()
@@ -387,8 +387,8 @@ var app = new Vue({
                     app.selectedStatus = response.data.status.students
                 }
             ).catch(
-                function(response) {
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                function(error) {
+                    console.error('error: "'+ error)
                     
                     if(!login.debug) {
                         app.logout()
@@ -415,8 +415,8 @@ var app = new Vue({
 
                 }
             ).catch(
-                function(response) {
-                    console.error('error: "'+response.response.status + ': ' + response.response.statusText +'"' )
+                function(error) {
+                    console.error('error: "'+ error)
                     
                 }
             )
@@ -476,9 +476,9 @@ var app = new Vue({
                     app.statusen = response.data.statusen
                 }
             ).catch(
-                function(response) {
+                function(error) {
                     bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
-                    console.error('error: "'+response.status + ': ' + response.statusText +'"' )
+                    console.error('error: "'+ error)
                 }
             )
 
@@ -491,9 +491,9 @@ var app = new Vue({
                     app.colors = response.data.colors
                 }
             ).catch(
-                function(response) {
+                function(error) {
                     bootbox.alert("Fout: de app kan geen verbinding maken met de server.");
-                    console.error('error: "'+response.status + ': ' + response.statusText +'"' )
+                    console.error('error: "'+ error)
                 }
             )
         }

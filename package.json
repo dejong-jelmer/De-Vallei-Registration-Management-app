@@ -1,0 +1,28 @@
+{
+  "name": "devallei_app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dejong-jelmer/De-Vallei-Registration-Management-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dejong-jelmer/De-Vallei-Registration-Management-app/issues"
+  },
+  "homepage": "https://github.com/dejong-jelmer/De-Vallei-Registration-Management-app#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootbox": "^4.4.0",
+    "bootstrap": "^4.1.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "vue": "^2.5.16"
+  }
+}

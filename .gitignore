@@ -1,6 +1,2 @@
-/css/bootstrap
-/fonts
-/js/axios
-/js/bootstrap
-/js/jquery
-/js/vue
+/node_modules
+package-lock.json

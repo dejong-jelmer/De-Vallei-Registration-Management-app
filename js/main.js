@@ -1,7 +1,7 @@
 
 // load axios instance
 var axios = axios.create({
-    baseURL: 'http://de_vallei.test/api/v1',
+    baseURL: 'http://80.240.22.216/api/v1',
     timeout: 5000
 });
 
@@ -18,9 +18,9 @@ var login = new Vue({
         logedIn: false,
         lastNumber: '0',
         timerInterval: '',
-        passwordLength: 1,
+        passwordLength: 4,
         message: 'Inloggen',
-        name: 'test@test.com',
+        name: 'app@devallei.com',
         reset: 'img/reset.png',
         bullet: 'img/bullet.png',
         firstNumbers: ['1','2','3','4','5','6','7','8','9']
